@@ -1,5 +1,7 @@
-
+server: 8080
 spring:
+  application:
+    name: droneService
   datasource:
     url: jdbc:postgresql://localhost:5432/dronesDB
     username: postgres
@@ -9,4 +11,18 @@ spring:
     show-sql: false #DEBUG only
     generate-ddl: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
+
+#service discovery
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url.defaultZone: http://localhost:8761/eureka/
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+battery:
+  chargePercentage: 5
+  maxPercentage: 100
