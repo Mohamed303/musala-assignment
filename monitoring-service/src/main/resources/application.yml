@@ -18,7 +18,8 @@
 #      ddl-auto: update
 #spring.data.mongodb.uri=mongodb://localhost:27017/droneDB
 #service discovery
-server: 8083
+server:
+  port: 8090
 eureka:
   instance:
     hostname: localhost
@@ -30,6 +31,17 @@ springdoc:
     path: /swagger-ui.html
 
 spring:
+  mongodb:
+    embedded:
+      version: DEVELOPMENT
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: droneLog
+
+  application:
+    name: monitoringService
   cloud:
     loadbalancer:
       ribbon:
@@ -49,8 +61,8 @@ ribbon:
   ReadTimeout: 60000
   ConnectionTimeout: 60000
 
-accounting-service:
-  ribbon:
-    eureka:
-      enabled: false
-    listOfServers: http://127.0.0.1:8080
+
+
+drone:
+  logPeriod: 30000 #every 30 sec
+  statePeriod: 60000
